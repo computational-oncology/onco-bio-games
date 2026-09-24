@@ -93,32 +93,32 @@ export default function CellDifferencesGame({ onBack, onScoreUpdate }) {
   return (
     <div style={{ maxWidth: '1080px', margin: '0 auto' }}>
       {/* Navigation Header */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '24px' }}>
-        <button className="btn-secondary" onClick={onBack}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px', marginBottom: '20px' }}>
+        <button className="btn-secondary" onClick={onBack} style={{ flexShrink: 0 }}>
           <ArrowLeft size={18} /> Torna ai Giochi
         </button>
 
-        <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-          <div className="badge-pill" style={{ color: 'var(--primary-cyan)', borderColor: 'var(--border-glass)' }}>
-            <Eye size={16} /> Differenze Trovate: {foundIds.length} / {DIFFERENCES.length}
+        <div style={{ display: 'flex', gap: '8px', alignItems: 'center', flexWrap: 'wrap' }}>
+          <div className="badge-pill" style={{ color: 'var(--primary-cyan)', borderColor: 'var(--border-glass)', fontSize: '0.8rem' }}>
+            <Eye size={15} /> Differenze: {foundIds.length} / {DIFFERENCES.length}
           </div>
-          <div className="badge-pill" style={{ color: 'var(--primary-emerald)', borderColor: 'var(--border-glass)' }}>
-            <Award size={16} /> Punti: {score}
+          <div className="badge-pill" style={{ color: 'var(--primary-emerald)', borderColor: 'var(--border-glass)', fontSize: '0.8rem' }}>
+            <Award size={15} /> Punti: {score}
           </div>
         </div>
       </div>
 
-      <div className="glass-panel" style={{ padding: '32px' }}>
+      <div className="glass-panel" style={{ padding: '20px' }}>
         {/* Header Title */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '20px', paddingBottom: '16px', borderBottom: '1px solid var(--border-glass)' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '12px', marginBottom: '16px', paddingBottom: '14px', borderBottom: '1px solid var(--border-glass)' }}>
           <div>
-            <span style={{ fontSize: '0.8rem', color: 'var(--primary-pink)', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+            <span style={{ fontSize: '0.78rem', color: 'var(--primary-pink)', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
               Osservazione al Microscopio per le Scuole
             </span>
-            <h2 style={{ fontSize: '1.75rem', fontWeight: '800', marginTop: '4px' }}>
-              Trova le 5 Differenze: <span className="text-gradient-cyan">Cellula Sana vs Cellula Tumorale</span>
+            <h2 style={{ fontSize: '1.4rem', fontWeight: '800', marginTop: '2px' }}>
+              Trova le 5 Differenze: <span className="text-gradient-cyan">Cellula Sana vs Tumorale</span>
             </h2>
-            <p style={{ fontSize: '0.92rem', color: 'var(--text-muted)', marginTop: '4px' }}>
+            <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)', marginTop: '2px' }}>
               Clicca sui <strong>5 dettagli estranei nella cellula tumorale</strong> (4 facili, 1 super difficile!).
             </p>
           </div>
@@ -129,9 +129,9 @@ export default function CellDifferencesGame({ onBack, onScoreUpdate }) {
               setShowHint(!showHint);
               playSound('click');
             }}
-            style={{ fontSize: '0.85rem' }}
+            style={{ fontSize: '0.82rem', width: '100%', maxWidth: '200px' }}
           >
-            <HelpCircle size={16} color="var(--primary-amber)" /> {showHint ? 'Nascondi Suggerimento' : 'Suggerimento'}
+            <HelpCircle size={15} color="var(--primary-amber)" /> {showHint ? 'Nascondi Suggerimento' : 'Suggerimento'}
           </button>
         </div>
 
@@ -140,24 +140,24 @@ export default function CellDifferencesGame({ onBack, onScoreUpdate }) {
           <div style={{
             background: 'rgba(245, 158, 11, 0.12)',
             border: '1px solid var(--primary-amber)',
-            borderRadius: '14px',
-            padding: '14px 18px',
-            marginBottom: '20px',
+            borderRadius: '12px',
+            padding: '12px 14px',
+            marginBottom: '16px',
             color: 'var(--text-main)',
-            fontSize: '0.9rem',
+            fontSize: '0.85rem',
             display: 'flex',
             alignItems: 'center',
-            gap: '12px'
+            gap: '10px'
           }}>
-            <AlertCircle size={22} color="var(--primary-amber)" />
+            <AlertCircle size={20} color="var(--primary-amber)" style={{ flexShrink: 0 }} />
             <div>
               <strong>Suggerimento:</strong> {remainingDiffs[0].hint}
             </div>
           </div>
         )}
 
-        {/* Realism Dual Canvas SVG */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px', marginBottom: '28px' }}>
+        {/* Realism Dual Canvas SVG (Responsive Grid) */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', marginBottom: '24px' }}>
           
           {/* CELLULA NORMALE */}
           <div style={{
@@ -325,13 +325,15 @@ export default function CellDifferencesGame({ onBack, onScoreUpdate }) {
                   key={diff.id}
                   onClick={() => isFound && setSelectedDiff(diff)}
                   style={{
-                    padding: '16px 20px',
-                    borderRadius: '14px',
+                    padding: '12px 14px',
+                    borderRadius: '12px',
                     background: isFound ? (diff.isHard ? 'rgba(239,68,68,0.15)' : 'rgba(16,185,129,0.12)') : 'var(--bg-card)',
                     border: isFound ? (diff.isHard ? '2px solid #ef4444' : '1px solid #10b981') : '1px solid var(--border-glass)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
+                    flexWrap: 'wrap',
+                    gap: '10px',
                     opacity: isFound ? 1 : 0.6,
                     cursor: isFound ? 'pointer' : 'default',
                     transition: 'all 0.15s ease'

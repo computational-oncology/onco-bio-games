@@ -41,36 +41,36 @@ Data: ${new Date().toLocaleDateString('it-IT')}
   return (
     <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
       {/* Header Sezione */}
-      <div style={{ textAlign: 'center', marginBottom: '32px' }}>
+      <div style={{ textAlign: 'center', marginBottom: '24px' }}>
         <div style={{
           display: 'inline-flex',
           alignItems: 'center',
           justifyContent: 'center',
-          width: '60px',
-          height: '60px',
-          borderRadius: '18px',
+          width: '52px',
+          height: '52px',
+          borderRadius: '16px',
           background: 'rgba(245,158,11,0.18)',
           border: '1px solid var(--primary-amber)',
-          marginBottom: '14px'
+          marginBottom: '10px'
         }}>
-          <Trophy size={34} color="var(--primary-amber)" />
+          <Trophy size={28} color="var(--primary-amber)" />
         </div>
-        <h2 style={{ fontSize: '2rem', fontWeight: '800' }} className="text-gradient-cyan">
+        <h2 style={{ fontSize: 'clamp(1.4rem, 4vw, 2rem)', fontWeight: '800' }} className="text-gradient-cyan">
           Classifica della Classe & Medaglie
         </h2>
-        <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', marginTop: '4px' }}>
+        <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginTop: '4px' }}>
           Confronta i tuoi risultati con i compagni di scuola e colleziona i badge scientifici!
         </p>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 340px', gap: '24px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }}>
         {/* Tabella Classifica */}
-        <div className="glass-panel" style={{ padding: '28px' }}>
-          <h3 style={{ fontSize: '1.2rem', fontWeight: '800', marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-main)' }}>
-            <Trophy color="var(--primary-amber)" size={20} /> Classifica Partecipanti
+        <div className="glass-panel" style={{ padding: '20px' }}>
+          <h3 style={{ fontSize: '1.1rem', fontWeight: '800', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-main)' }}>
+            <Trophy color="var(--primary-amber)" size={18} /> Classifica Partecipanti
           </h3>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
             {leaderboard.map((item, index) => {
               const isCurrentUser = userProfile?.name?.toLowerCase() === item.name.toLowerCase();
               const userAvatar = AVATARS.find(a => a.id === item.avatar) || AVATARS[0];
@@ -82,57 +82,59 @@ Data: ${new Date().toLocaleDateString('it-IT')}
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
-                    padding: '14px 18px',
-                    borderRadius: '14px',
+                    padding: '10px 14px',
+                    borderRadius: '12px',
                     background: isCurrentUser ? 'rgba(0, 242, 254, 0.12)' : 'var(--bg-inner)',
                     border: isCurrentUser ? '2px solid var(--primary-cyan)' : '1px solid var(--border-glass)',
                     transition: 'all 0.15s ease'
                   }}
                 >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', overflow: 'hidden' }}>
                     <div style={{
-                      width: '32px',
-                      height: '32px',
+                      width: '28px',
+                      height: '28px',
                       borderRadius: '50%',
                       background: index === 0 ? '#f59e0b' : index === 1 ? '#94a3b8' : index === 2 ? '#b45309' : 'var(--bg-card)',
                       color: index < 3 ? '#000' : 'var(--text-main)',
                       fontWeight: '800',
-                      fontSize: '0.9rem',
+                      fontSize: '0.85rem',
                       display: 'flex',
                       alignItems: 'center',
-                      justifyContent: 'center'
+                      justifyContent: 'center',
+                      flexShrink: 0
                     }}>
                       {index + 1}
                     </div>
 
                     <div style={{
-                      width: '36px',
-                      height: '36px',
-                      borderRadius: '10px',
+                      width: '32px',
+                      height: '32px',
+                      borderRadius: '8px',
                       background: 'var(--bg-card)',
                       border: `1px solid ${userAvatar.color}`,
                       display: 'flex',
                       alignItems: 'center',
-                      justifyContent: 'center'
+                      justifyContent: 'center',
+                      flexShrink: 0
                     }}>
-                      <User size={18} color={userAvatar.color} />
+                      <User size={16} color={userAvatar.color} />
                     </div>
 
-                    <div>
-                      <div style={{ fontWeight: '800', fontSize: '1rem', color: isCurrentUser ? 'var(--primary-cyan)' : 'var(--text-main)' }}>
-                        {item.name} {isCurrentUser && <span style={{ fontSize: '0.75rem', background: 'rgba(0,242,254,0.2)', padding: '2px 6px', borderRadius: '4px', marginLeft: '6px' }}>Tu</span>}
+                    <div style={{ overflow: 'hidden' }}>
+                      <div style={{ fontWeight: '800', fontSize: '0.92rem', color: isCurrentUser ? 'var(--primary-cyan)' : 'var(--text-main)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                        {item.name} {isCurrentUser && <span style={{ fontSize: '0.7rem', background: 'rgba(0,242,254,0.2)', padding: '1px 5px', borderRadius: '4px', marginLeft: '4px' }}>Tu</span>}
                       </div>
-                      <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
+                      <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                         {item.schoolClass ? `${item.schoolClass} • ` : ''}{item.role}
                       </div>
                     </div>
                   </div>
 
-                  <div style={{ textAlign: 'right' }}>
-                    <div style={{ fontWeight: '800', fontSize: '1.1rem', color: 'var(--primary-cyan)' }}>
+                  <div style={{ textAlign: 'right', flexShrink: 0 }}>
+                    <div style={{ fontWeight: '800', fontSize: '1rem', color: 'var(--primary-cyan)' }}>
                       {item.score} pt
                     </div>
-                    <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
+                    <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>
                       {item.badges?.length || 0} badge
                     </div>
                   </div>

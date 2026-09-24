@@ -65,6 +65,7 @@ export default function App() {
         onEditProfile={() => setShowLoginModal(true)}
         theme={theme}
         onToggleTheme={handleToggleTheme}
+        activeGame={activeGame}
       />
 
       {/* Main Container */}

@@ -127,33 +127,33 @@ export default function MutationHunterGame({ onBack, onScoreUpdate }) {
   return (
     <div style={{ maxWidth: '900px', margin: '0 auto' }}>
       {/* Header bar gioco */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '24px' }}>
-        <button className="btn-secondary" onClick={onBack}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px', marginBottom: '20px' }}>
+        <button className="btn-secondary" onClick={onBack} style={{ flexShrink: 0 }}>
           <ArrowLeft size={18} /> Torna ai Giochi
         </button>
         
-        <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-          <div className="badge-pill" style={{ color: 'var(--primary-cyan)', borderColor: 'var(--border-glass)' }}>
-            <Dna size={16} /> Livello {currentLevelIdx + 1} di {MUTATION_LEVELS.length}
+        <div style={{ display: 'flex', gap: '8px', alignItems: 'center', flexWrap: 'wrap' }}>
+          <div className="badge-pill" style={{ color: 'var(--primary-cyan)', borderColor: 'var(--border-glass)', fontSize: '0.8rem' }}>
+            <Dna size={15} /> Livello {currentLevelIdx + 1} / {MUTATION_LEVELS.length}
           </div>
-          <div className="badge-pill" style={{ color: 'var(--primary-emerald)', borderColor: 'var(--border-glass)' }}>
-            <Award size={16} /> Punti: {score}
+          <div className="badge-pill" style={{ color: 'var(--primary-emerald)', borderColor: 'var(--border-glass)', fontSize: '0.8rem' }}>
+            <Award size={15} /> Punti: {score}
           </div>
         </div>
       </div>
 
       {phase !== 'completed' ? (
-        <div className="glass-panel" style={{ padding: '32px' }}>
+        <div className="glass-panel" style={{ padding: '20px' }}>
           {/* Info Gene Target */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '20px', paddingBottom: '16px', borderBottom: '1px solid var(--border-glass)' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '12px', marginBottom: '16px', paddingBottom: '14px', borderBottom: '1px solid var(--border-glass)' }}>
             <div>
-              <span style={{ fontSize: '0.8rem', color: 'var(--primary-cyan)', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+              <span style={{ fontSize: '0.78rem', color: 'var(--primary-cyan)', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                 Sfida Detective del DNA
               </span>
-              <h2 style={{ fontSize: '1.6rem', fontWeight: '800', marginTop: '4px' }}>
+              <h2 style={{ fontSize: '1.4rem', fontWeight: '800', marginTop: '2px' }}>
                 {currentLevel.gene}
               </h2>
-              <p style={{ fontSize: '0.92rem', color: 'var(--text-muted)' }}>
+              <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)' }}>
                 {currentLevel.easySummary}
               </p>
             </div>
@@ -161,29 +161,34 @@ export default function MutationHunterGame({ onBack, onScoreUpdate }) {
             <div style={{
               background: 'var(--bg-inner)',
               border: '1px solid var(--border-glass)',
-              borderRadius: '12px',
-              padding: '10px 16px',
-              fontSize: '0.88rem',
-              color: 'var(--text-main)'
+              borderRadius: '10px',
+              padding: '8px 12px',
+              fontSize: '0.82rem',
+              color: 'var(--text-main)',
+              width: '100%',
+              maxWidth: '380px'
             }}>
               🎯 Clicca sulla lettera del DNA tumorale che è diversa dal DNA sano!
             </div>
           </div>
 
           {/* Sequenze a confronto */}
-          <div style={{ background: 'var(--bg-inner)', borderRadius: '16px', padding: '24px', marginBottom: '24px', border: '1px solid var(--border-glass)' }}>
+          <div style={{ background: 'var(--bg-inner)', borderRadius: '14px', padding: '16px', marginBottom: '20px', border: '1px solid var(--border-glass)' }}>
+            <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '10px', textAlign: 'center' }}>
+              👈 Trascina lateralmente con il dito per vedere tutte le 16 lettere 👉
+            </div>
             
             {/* Sequenza DNA Sano */}
-            <div style={{ marginBottom: '20px' }}>
-              <div style={{ fontSize: '0.88rem', color: 'var(--primary-emerald)', fontWeight: '700', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <div style={{ marginBottom: '16px' }}>
+              <div style={{ fontSize: '0.82rem', color: 'var(--primary-emerald)', fontWeight: '700', marginBottom: '6px', display: 'flex', alignItems: 'center', gap: '6px' }}>
                 <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--primary-emerald)' }}></span>
                 Codice DNA Sano (Riferimento):
               </div>
-              <div style={{ display: 'flex', gap: '6px', overflowX: 'auto', paddingBottom: '6px' }}>
+              <div className="scroll-container-horizontal">
                 {currentLevel.refSeq.map((base, idx) => (
-                  <div key={'ref-' + idx} style={{ textAlign: 'center' }}>
+                  <div key={'ref-' + idx} style={{ textAlign: 'center', flexShrink: 0 }}>
                     <span className={`nucleotide-badge base-${base}`}>{base}</span>
-                    <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '4px' }}>#{idx + 1}</div>
+                    <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', marginTop: '3px' }}>#{idx + 1}</div>
                   </div>
                 ))}
               </div>
@@ -191,22 +196,22 @@ export default function MutationHunterGame({ onBack, onScoreUpdate }) {
 
             {/* Sequenza DNA Tumorale */}
             <div>
-              <div style={{ fontSize: '0.88rem', color: 'var(--primary-pink)', fontWeight: '700', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <div style={{ fontSize: '0.82rem', color: 'var(--primary-pink)', fontWeight: '700', marginBottom: '6px', display: 'flex', alignItems: 'center', gap: '6px' }}>
                 <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--primary-pink)' }}></span>
                 Codice DNA Tumorale (Trova l'errore):
               </div>
-              <div style={{ display: 'flex', gap: '6px', overflowX: 'auto', paddingBottom: '6px' }}>
+              <div className="scroll-container-horizontal">
                 {currentLevel.tumorSeq.map((base, idx) => {
                   const isSelected = selectedPos === idx;
                   return (
-                    <div key={'tum-' + idx} style={{ textAlign: 'center' }}>
+                    <div key={'tum-' + idx} style={{ textAlign: 'center', flexShrink: 0 }}>
                       <button
                         onClick={() => handleBaseClick(idx)}
                         disabled={phase !== 'identify'}
                         className={`nucleotide-badge base-${base}`}
                         style={{
                           border: isSelected ? '3px solid var(--primary-cyan)' : '1px solid transparent',
-                          transform: isSelected ? 'scale(1.18)' : 'none',
+                          transform: isSelected ? 'scale(1.15)' : 'none',
                           cursor: phase === 'identify' ? 'pointer' : 'default',
                           opacity: phase !== 'identify' && idx !== currentLevel.mutatedIndex ? 0.5 : 1
                         }}
@@ -223,34 +228,35 @@ export default function MutationHunterGame({ onBack, onScoreUpdate }) {
           {/* Feedback Messaggio errore/successo */}
           {feedback && (
             <div style={{
-              padding: '14px 18px',
-              borderRadius: '12px',
-              marginBottom: '20px',
+              padding: '12px 14px',
+              borderRadius: '10px',
+              marginBottom: '16px',
               background: feedback.type === 'success' ? 'rgba(16, 185, 129, 0.15)' : 'rgba(239, 68, 68, 0.15)',
               border: `1px solid ${feedback.type === 'success' ? 'var(--primary-emerald)' : '#ef4444'}`,
               display: 'flex',
               alignItems: 'center',
-              gap: '12px',
+              gap: '10px',
+              fontSize: '0.88rem',
               color: 'var(--text-main)'
             }}>
-              {feedback.type === 'success' ? <CheckCircle2 color="var(--primary-emerald)" /> : <XCircle color="#ef4444" />}
+              {feedback.type === 'success' ? <CheckCircle2 color="var(--primary-emerald)" size={20} /> : <XCircle color="#ef4444" size={20} />}
               <span>{feedback.text}</span>
             </div>
           )}
 
           {/* Azioni Fase 1: Identificazione */}
           {phase === 'identify' && (
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
+              <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)', margin: 0 }}>
                 {selectedPos !== null 
-                  ? `Hai selezionato la lettera #${selectedPos + 1}. Conferma la tua scelta!`
-                  : 'Clicca sulla lettera diversa nel DNA del tumore.'}
+                  ? `Hai selezionato la lettera #${selectedPos + 1}.`
+                  : 'Clicca sulla lettera diversa nel DNA tumorale.'}
               </p>
               <button
                 className="btn-primary"
                 onClick={handleConfirmPosition}
                 disabled={selectedPos === null}
-                style={{ opacity: selectedPos === null ? 0.5 : 1 }}
+                style={{ opacity: selectedPos === null ? 0.5 : 1, width: '100%', maxWidth: '280px' }}
               >
                 Conferma Errore Trovato
               </button>
@@ -259,15 +265,15 @@ export default function MutationHunterGame({ onBack, onScoreUpdate }) {
 
           {/* Azioni Fase 2: Classificazione Semplice */}
           {phase === 'classify' && (
-            <div style={{ background: 'var(--bg-inner)', borderRadius: '16px', padding: '24px', border: '1px solid var(--border-glass)' }}>
-              <h3 style={{ fontSize: '1.2rem', color: 'var(--primary-cyan)', marginBottom: '10px' }}>
+            <div style={{ background: 'var(--bg-inner)', borderRadius: '14px', padding: '18px', border: '1px solid var(--border-glass)' }}>
+              <h3 style={{ fontSize: '1.1rem', color: 'var(--primary-cyan)', marginBottom: '8px' }}>
                 Che tipo di cambiamento è avvenuto?
               </h3>
-              <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', marginBottom: '16px' }}>
+              <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)', marginBottom: '14px' }}>
                 La lettera <strong>"{currentLevel.originalLetter}"</strong> è diventata <strong>"{currentLevel.mutatedLetter}"</strong>. Scegli la risposta corretta:
               </p>
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '20px' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '10px', marginBottom: '16px' }}>
                 {[
                   currentLevel.type,
                   'Una lettera è stata cancellata (Delezione)',
@@ -281,14 +287,14 @@ export default function MutationHunterGame({ onBack, onScoreUpdate }) {
                       playSound('click');
                     }}
                     style={{
-                      padding: '14px',
-                      borderRadius: '12px',
+                      padding: '12px',
+                      borderRadius: '10px',
                       background: selectedMutType === optionType ? 'rgba(0, 242, 254, 0.15)' : 'var(--bg-card)',
                       border: selectedMutType === optionType ? '2px solid var(--primary-cyan)' : '1px solid var(--border-glass)',
                       color: 'var(--text-main)',
                       textAlign: 'left',
                       fontWeight: '700',
-                      fontSize: '0.9rem',
+                      fontSize: '0.85rem',
                       cursor: 'pointer',
                       transition: 'all 0.15s ease'
                     }}

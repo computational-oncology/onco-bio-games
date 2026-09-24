@@ -30,60 +30,61 @@ export default function InitiativeInfoView() {
   return (
     <div style={{ maxWidth: '900px', margin: '0 auto' }}>
       {/* Header */}
-      <div className="glass-panel" style={{ padding: '36px', marginBottom: '28px', background: 'radial-gradient(circle at 10% 10%, rgba(139,92,246,0.15), transparent 40%), var(--bg-card)' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '16px' }}>
+      <div className="glass-panel" style={{ padding: '24px', marginBottom: '20px', background: 'radial-gradient(circle at 10% 10%, rgba(139,92,246,0.15), transparent 40%), var(--bg-card)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '14px', flexWrap: 'wrap' }}>
           <div style={{
-            width: '56px',
-            height: '56px',
-            borderRadius: '16px',
+            width: '46px',
+            height: '46px',
+            borderRadius: '12px',
             background: 'rgba(255,255,255,0.08)',
             border: '1px solid rgba(255,255,255,0.2)',
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center'
+            justifyContent: 'center',
+            flexShrink: 0
           }}>
-            <GitBranch size={32} color="#ffffff" />
+            <GitBranch size={26} color="#ffffff" />
           </div>
           <div>
-            <h2 style={{ fontSize: '1.8rem', fontWeight: '800', margin: 0 }}>
+            <h2 style={{ fontSize: '1.5rem', fontWeight: '800', margin: 0 }}>
               Iniziativa <span className="text-gradient-cyan">Computational Oncology</span>
             </h2>
             <a
               href="https://github.com/computational-oncology"
               target="_blank"
               rel="noopener noreferrer"
-              style={{ color: '#00f2fe', textDecoration: 'none', fontSize: '0.9rem', display: 'inline-flex', alignItems: 'center', gap: '4px', marginTop: '2px' }}
+              style={{ color: '#00f2fe', textDecoration: 'none', fontSize: '0.85rem', display: 'inline-flex', alignItems: 'center', gap: '4px', marginTop: '2px', wordBreak: 'break-all' }}
             >
               https://github.com/computational-oncology <ExternalLink size={14} />
             </a>
           </div>
         </div>
 
-        <p style={{ color: 'var(--text-muted)', fontSize: '1rem', lineHeight: 1.6 }}>
+        <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', lineHeight: 1.5 }}>
           Piattaforma didattica di giochi in lingua italiana per l'insegnamento pratico di <strong>Bioinformatica ed Oncologia Molecolare</strong>.
         </p>
       </div>
 
       {/* Guida Pubblicazione su GitHub */}
-      <div className="glass-panel" style={{ padding: '32px', marginBottom: '28px' }}>
-        <h3 style={{ fontSize: '1.3rem', fontWeight: '800', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '10px', color: '#ffffff' }}>
-          <Terminal color="#00f2fe" size={22} /> Guida al Deployment del Repository GitHub
+      <div className="glass-panel" style={{ padding: '20px', marginBottom: '20px' }}>
+        <h3 style={{ fontSize: '1.15rem', fontWeight: '800', marginBottom: '6px', display: 'flex', alignItems: 'center', gap: '8px', color: '#ffffff' }}>
+          <Terminal color="#00f2fe" size={20} /> Guida Deployment GitHub
         </h3>
-        <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '24px' }}>
+        <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', marginBottom: '16px' }}>
           Esegui questi comandi per caricare il codice ed attivare la pubblicazione live su GitHub Pages:
         </p>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
           {gitCommands.map((item, idx) => (
-            <div key={idx} style={{ background: 'rgba(15, 23, 42, 0.9)', borderRadius: '14px', padding: '20px', border: '1px solid rgba(255,255,255,0.08)' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
-                <span style={{ fontSize: '0.9rem', fontWeight: '700', color: '#00f2fe' }}>
+            <div key={idx} style={{ background: 'rgba(15, 23, 42, 0.9)', borderRadius: '12px', padding: '14px', border: '1px solid rgba(255,255,255,0.08)' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px', marginBottom: '8px' }}>
+                <span style={{ fontSize: '0.85rem', fontWeight: '700', color: '#00f2fe' }}>
                   {item.title}
                 </span>
                 <button
                   onClick={() => handleCopy(item.cmd, idx)}
                   className="btn-secondary"
-                  style={{ padding: '6px 12px', fontSize: '0.8rem' }}
+                  style={{ padding: '5px 10px', fontSize: '0.78rem' }}
                 >
                   {copiedIndex === idx ? <Check size={14} color="#10b981" /> : <Copy size={14} />}
                   {copiedIndex === idx ? 'Copiato!' : 'Copia Comando'}
@@ -92,10 +93,10 @@ export default function InitiativeInfoView() {
 
               <pre style={{
                 fontFamily: 'monospace',
-                fontSize: '0.85rem',
+                fontSize: '0.8rem',
                 color: '#e5e7eb',
                 background: 'rgba(0,0,0,0.3)',
-                padding: '12px 16px',
+                padding: '10px 12px',
                 borderRadius: '8px',
                 overflowX: 'auto',
                 margin: 0
@@ -108,22 +109,22 @@ export default function InitiativeInfoView() {
       </div>
 
       {/* Panoramica delle 2 sfide */}
-      <div className="glass-panel" style={{ padding: '32px' }}>
-        <h3 style={{ fontSize: '1.2rem', fontWeight: '700', marginBottom: '16px', color: '#ffffff' }}>
+      <div className="glass-panel" style={{ padding: '20px' }}>
+        <h3 style={{ fontSize: '1.1rem', fontWeight: '700', marginBottom: '14px', color: '#ffffff' }}>
           🧬 Panoramica delle 2 sfide didattiche:
         </h3>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
-          <div style={{ background: 'rgba(255,255,255,0.03)', padding: '16px', borderRadius: '12px', border: '1px solid rgba(0,242,254,0.2)' }}>
-            <div style={{ fontWeight: '700', color: '#00f2fe', marginBottom: '4px' }}>1. Caccia alle Mutazioni</div>
-            <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '14px' }}>
+          <div style={{ background: 'rgba(255,255,255,0.03)', padding: '14px', borderRadius: '12px', border: '1px solid rgba(0,242,254,0.2)' }}>
+            <div style={{ fontWeight: '700', color: '#00f2fe', marginBottom: '4px', fontSize: '0.92rem' }}>1. Caccia alle Mutazioni</div>
+            <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)' }}>
               Analisi di sequenze DNA tumorali e confronto con la sequenza wild-type per identificare mutazioni somatiche in BRAF, EGFR, KRAS, TP53.
             </div>
           </div>
 
-          <div style={{ background: 'rgba(255,255,255,0.03)', padding: '16px', borderRadius: '12px', border: '1px solid rgba(236,72,153,0.2)' }}>
-            <div style={{ fontWeight: '700', color: '#ec4899', marginBottom: '4px' }}>2. Trova le 5 Differenze Cellulari</div>
-            <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
+          <div style={{ background: 'rgba(255,255,255,0.03)', padding: '14px', borderRadius: '12px', border: '1px solid rgba(236,72,153,0.2)' }}>
+            <div style={{ fontWeight: '700', color: '#ec4899', marginBottom: '4px', fontSize: '0.92rem' }}>2. Trova le 5 Differenze Cellulari</div>
+            <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)' }}>
               Analisi di 5 anomalie citologiche tra cellula normale e tumorale: 4 facili (nucleo, cromatina, membrana, mitosi) ed 1 difficile (Effetto Warburg).
             </div>
           </div>

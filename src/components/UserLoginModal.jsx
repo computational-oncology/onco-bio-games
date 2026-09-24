@@ -43,33 +43,33 @@ export default function UserLoginModal({ initialProfile, onSave, onClose, isCanc
 
   return (
     <div className="modal-overlay">
-      <div className="glass-panel" style={{ maxWidth: '500px', width: '100%', padding: '32px', position: 'relative' }}>
-        <div style={{ textAlign: 'center', marginBottom: '24px' }}>
+      <div className="glass-panel" style={{ maxWidth: '480px', width: '100%', padding: '24px 20px', position: 'relative', maxHeight: '90vh', overflowY: 'auto' }}>
+        <div style={{ textAlign: 'center', marginBottom: '20px' }}>
           <div style={{ 
             display: 'inline-flex', 
             alignItems: 'center', 
             justifyContent: 'center',
-            width: '60px',
-            height: '60px',
-            borderRadius: '16px',
+            width: '52px',
+            height: '52px',
+            borderRadius: '14px',
             background: 'rgba(0,242,254,0.15)',
             border: '1px solid var(--primary-cyan)',
-            marginBottom: '12px'
+            marginBottom: '10px'
           }}>
-            <Dna size={32} color="var(--primary-cyan)" className="dna-glow" />
+            <Dna size={28} color="var(--primary-cyan)" className="dna-glow" />
           </div>
-          <h2 style={{ fontSize: '1.75rem', fontWeight: '800' }} className="text-gradient-cyan">
+          <h2 style={{ fontSize: 'clamp(1.3rem, 4vw, 1.6rem)', fontWeight: '800' }} className="text-gradient-cyan">
             Benvenuto in OncoBioGames!
           </h2>
-          <p style={{ color: 'var(--text-muted)', fontSize: '0.92rem', marginTop: '4px' }}>
+          <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', marginTop: '2px' }}>
             Laboratorio didattico per le scuole 🏫 Inserisci il tuo nome e classe per iniziare.
           </p>
         </div>
 
         <form onSubmit={handleSubmit}>
           {/* Nome o Soprannome */}
-          <div style={{ marginBottom: '16px' }}>
-            <label style={{ display: 'block', fontSize: '0.88rem', fontWeight: '700', marginBottom: '6px', color: 'var(--text-main)' }}>
+          <div style={{ marginBottom: '14px' }}>
+            <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: '700', marginBottom: '4px', color: 'var(--text-main)' }}>
               Il tuo Nome o Soprannome <span style={{ color: 'var(--primary-pink)' }}>*</span>
             </label>
             <div style={{ position: 'relative' }}>
@@ -85,23 +85,23 @@ export default function UserLoginModal({ initialProfile, onSave, onClose, isCanc
                 maxLength={25}
                 style={{
                   width: '100%',
-                  padding: '12px 14px 12px 42px',
-                  borderRadius: '12px',
+                  padding: '10px 14px 10px 40px',
+                  borderRadius: '10px',
                   background: 'var(--bg-inner)',
                   border: error ? '1px solid #ef4444' : '1px solid var(--border-glass)',
                   color: 'var(--text-main)',
-                  fontSize: '0.95rem',
+                  fontSize: '0.9rem',
                   outline: 'none',
                   fontFamily: 'inherit'
                 }}
               />
             </div>
-            {error && <p style={{ color: '#ef4444', fontSize: '0.82rem', marginTop: '4px' }}>{error}</p>}
+            {error && <p style={{ color: '#ef4444', fontSize: '0.8rem', marginTop: '4px' }}>{error}</p>}
           </div>
 
           {/* Classe o Scuola (Opzionale) */}
-          <div style={{ marginBottom: '16px' }}>
-            <label style={{ display: 'block', fontSize: '0.88rem', fontWeight: '700', marginBottom: '6px', color: 'var(--text-main)' }}>
+          <div style={{ marginBottom: '14px' }}>
+            <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: '700', marginBottom: '4px', color: 'var(--text-main)' }}>
               Classe o Scuola (Opzionale)
             </label>
             <div style={{ position: 'relative' }}>
@@ -114,12 +114,12 @@ export default function UserLoginModal({ initialProfile, onSave, onClose, isCanc
                 maxLength={25}
                 style={{
                   width: '100%',
-                  padding: '12px 14px 12px 42px',
-                  borderRadius: '12px',
+                  padding: '10px 14px 10px 40px',
+                  borderRadius: '10px',
                   background: 'var(--bg-inner)',
                   border: '1px solid var(--border-glass)',
                   color: 'var(--text-main)',
-                  fontSize: '0.95rem',
+                  fontSize: '0.9rem',
                   outline: 'none',
                   fontFamily: 'inherit'
                 }}
@@ -128,8 +128,8 @@ export default function UserLoginModal({ initialProfile, onSave, onClose, isCanc
           </div>
 
           {/* Selezione Percorso / Scuola */}
-          <div style={{ marginBottom: '16px' }}>
-            <label style={{ display: 'block', fontSize: '0.88rem', fontWeight: '700', marginBottom: '6px', color: 'var(--text-main)' }}>
+          <div style={{ marginBottom: '14px' }}>
+            <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: '700', marginBottom: '4px', color: 'var(--text-main)' }}>
               Percorso scolastico
             </label>
             <select
@@ -137,12 +137,12 @@ export default function UserLoginModal({ initialProfile, onSave, onClose, isCanc
               onChange={(e) => setRole(e.target.value)}
               style={{
                 width: '100%',
-                padding: '12px 14px',
-                borderRadius: '12px',
+                padding: '10px 14px',
+                borderRadius: '10px',
                 background: 'var(--bg-inner)',
                 border: '1px solid var(--border-glass)',
                 color: 'var(--text-main)',
-                fontSize: '0.92rem',
+                fontSize: '0.88rem',
                 outline: 'none',
                 fontFamily: 'inherit',
                 cursor: 'pointer'
@@ -157,11 +157,11 @@ export default function UserLoginModal({ initialProfile, onSave, onClose, isCanc
           </div>
 
           {/* Selezione Avatar */}
-          <div style={{ marginBottom: '24px' }}>
-            <label style={{ display: 'block', fontSize: '0.88rem', fontWeight: '700', marginBottom: '10px', color: 'var(--text-main)' }}>
+          <div style={{ marginBottom: '20px' }}>
+            <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: '700', marginBottom: '8px', color: 'var(--text-main)' }}>
               Scegli il tuo Avatar
             </label>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '8px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '6px' }}>
               {AVATARS.map((av) => {
                 const IconComponent = iconMap[av.icon] || Dna;
                 const isSelected = selectedAvatar === av.id;
@@ -178,8 +178,9 @@ export default function UserLoginModal({ initialProfile, onSave, onClose, isCanc
                     style={{
                       background: isSelected ? 'rgba(0, 242, 254, 0.15)' : 'var(--bg-inner)',
                       border: isSelected ? `2px solid ${av.color}` : '1px solid var(--border-glass)',
-                      borderRadius: '12px',
-                      padding: '10px 0',
+                      borderRadius: '10px',
+                      padding: '8px 0',
+                      minHeight: '44px',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
@@ -188,21 +189,21 @@ export default function UserLoginModal({ initialProfile, onSave, onClose, isCanc
                       position: 'relative'
                     }}
                   >
-                    <IconComponent size={22} color={av.color} />
+                    <IconComponent size={20} color={av.color} />
                     {isSelected && (
                       <div style={{
                         position: 'absolute',
-                        top: '-4px',
-                        right: '-4px',
+                        top: '-3px',
+                        right: '-3px',
                         background: av.color,
                         borderRadius: '50%',
-                        width: '16px',
-                        height: '16px',
+                        width: '14px',
+                        height: '14px',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center'
                       }}>
-                        <Check size={10} color="#000" />
+                        <Check size={9} color="#000" />
                       </div>
                     )}
                   </button>
@@ -212,7 +213,7 @@ export default function UserLoginModal({ initialProfile, onSave, onClose, isCanc
           </div>
 
           {/* Pulsanti Azione */}
-          <div style={{ display: 'flex', gap: '12px' }}>
+          <div style={{ display: 'flex', gap: '10px' }}>
             {isCancelable && (
               <button
                 type="button"
@@ -226,9 +227,9 @@ export default function UserLoginModal({ initialProfile, onSave, onClose, isCanc
             <button
               type="submit"
               className="btn-primary"
-              style={{ flex: 1, padding: '14px' }}
+              style={{ flex: 1, padding: '12px' }}
             >
-              <Sparkles size={18} /> Entra nel Gioco
+              <Sparkles size={16} /> Entra nel Gioco
             </button>
           </div>
         </form>
